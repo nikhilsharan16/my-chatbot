@@ -10,15 +10,18 @@ import requests
 API_BASE = "http://localhost:5000"
 chunks_path = Path("chess_chunks.json")
 
+START_INDEX = 1004
+
 
 def main():
     with open(chunks_path, encoding="utf-8") as f:
         chunks = json.load(f)
 
-    print(f"Ingesting {len(chunks)} chunks...")
+    remaining = chunks[START_INDEX:]
+    print(f"Resuming from chunk {START_INDEX + 1}/{len(chunks)} — {len(remaining)} left to ingest.")
 
     succeeded = 0
-    for i, chunk in enumerate(chunks, 1):
+    for i, chunk in enumerate(remaining, start=START_INDEX + 1):
         try:
             res = requests.post(
                 f"{API_BASE}/api/ingest",
@@ -36,7 +39,7 @@ def main():
 
         time.sleep(0.2)
 
-    print(f"\nDone. {succeeded}/{len(chunks)} chunks ingested successfully.")
+    print(f"\nDone. {succeeded}/{len(remaining)} chunks ingested successfully.")
 
 
 if __name__ == "__main__":
