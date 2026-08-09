@@ -51,13 +51,13 @@ function App() {
   return (
     <div className="chat-container">
       <header className="chat-header">
-        <h1>My Chatbot</h1>
-        <p className="chat-subtitle">RAG-powered, backed by Gemini</p>
+        <h1>Chess Analysis Chatbot</h1>
+        <p className="chat-subtitle">Analysis using RAG and Gemini</p>
       </header>
 
       <div className="chat-messages">
         {messages.length === 0 && (
-          <div className="chat-empty">Ask something about your ingested documents.</div>
+          <div className="chat-empty">Learn from the top Grandmasters games.</div>
         )}
 
         {messages.map((msg, i) => (
