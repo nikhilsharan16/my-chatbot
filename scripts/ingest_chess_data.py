@@ -10,7 +10,7 @@ import requests
 API_BASE = "http://localhost:5000"
 chunks_path = Path("chess_chunks.json")
 
-START_INDEX = 1004
+START_INDEX = 1008
 
 
 def main():
